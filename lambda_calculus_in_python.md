@@ -194,3 +194,67 @@ def perhaps(d,  func):
     return None
 
 >>> perhaps(data, lambda d: d.get('a'))
+
+
+## Some Rules
+
+Parentheses are used for grouping, there is a notion of precedence...
+
+See pylambda5.py
+
+- Rule 1: Alpha Conversion == "You can rename variables as long as they remain distinct."
+- Rule 2: You substitute arguments
+  - not too well explained, example hard to write as well
+  - "you literally take the argument and paste it into the thing"
+  - caveat: names must remain distinct (same as 1)
+  - basically scoping issues,  is the outer x the same as the x in the function? Nope!
+    - parent scope and child scope are distinct
+  - this is reducing: lambda xz.xzx(y) -> lamdbaz: yzy  # note that a variable was renamed...
+  - beta reduction: "lambda a: a" is an identity function to pass another function
+
+
+### David Hilbert - Hilbert's Program (wikipedia)
+
+If you had formal systems and axioms, can you derive all of math?
+
+If you had the right set of axioms could you get to mathematical truth by turning the crank?
+
+
+### Entscheidungsproblem
+
+- note: Turing was setting out to add a boundary on this.
+- Godel Incompleteness Theorem
+- Lambda Calculus - Alonzo Church - 1930s - "effective calculability"
+- How do you mathematically describe the ability to calculate something, the concept of an algorithm
+- 1936: turing machines, then proving that turing machines and lambda calculus are equivalent
+
+
+### 1960s LISP (about 20 years later): John McCarthy
+
+Why do they call it lambda?  Lambda calculus paper is cited in lisp paper, but only to borrow the notation.  Only real influence is on functions. Actual lisp paper is focused on AI programming or something.  They even passed more arguments in - went their own way with it: s-expressions and such.
+
+LISP is a jumping point for what we do next, LISP  is "LISt Processor" language.
+
+Names in lisp: `cons, car, cdr` based on the ibm machine they were working on.
+
+```
+def cons(a, b):
+  def select(m):
+    if m == 0:
+      return a
+    elif m == 1:
+      return b
+  return select
+
+def car(p):
+  return p(0)
+
+def cdr(p):
+  return p(1)
+```
+
+
+
+
+
+
