@@ -254,6 +254,16 @@ def cdr(p):
 ```
 
 
+## Ok so lets do PRED, SUB, ISZERO, 
+
+Lots of incremental tools building up.
+
+CAR, CDR, CONS
+
+predecessor,  subtraction, zero detection
+
+See `pylambda6.py`
+
 
 
 

@@ -1,5 +1,6 @@
 
 # Church numerals
+ZERO = lambda f: lambda x: x # don't call the function (this is just identity function)
 ONE = lambda f: lambda x: f(x)
 TWO = lambda f: lambda x: f(f(x))
 THREE = lambda f: lambda x: f(f(f(x)))
