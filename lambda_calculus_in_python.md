@@ -2,6 +2,8 @@
 
 - Three Hour Seminar
 - Pycon 2019: Wed, May 1st
+- Inspired by SICP book "Structure and Interpretation of Computer Programs"
+    - Covers many similar concepts but not lambda calculus or Y combinator
 
 Note that we just alias things with names because we want to move them around. Lambda calculus has no assignment. That's listed below.
 
