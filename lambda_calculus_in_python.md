@@ -4,6 +4,8 @@
 - Pycon 2019: Wed, May 1st
 
 
+## What is the lambda calculus (general question)
+
 Carve all the python away, how much could you cut away and still have something to compute with?
 
 - No packages/modules
@@ -158,7 +160,37 @@ MUL = lambda x: lambda y: lambda f: y(x(f))
 7
 ```
 
+## Digression: JSON object from hell
 
+Say we are trying to navigate down into a nested json object / nested dict.
 
-## What is the lambda calculus
+Same concept as repeated application of function on the result
 
+> I thought you said this wouldn't be relevant work?
+
+> You'll see: I'm going to make it irrelevant.
+
+```
+
+def getc(d):
+  return d['a']['b']['c']
+
+def getc(d):
+  d = d.get('a')
+  if d is not None:
+    d = d.get('b')
+  if d is not None:
+    d = d.get('c')
+  return d
+
+# lots of code repetition! so lets clean it up...
+
+def perhaps(d,  func):
+  ''' helper function
+  '''
+  if d is not None:
+    return func(d)
+  else:
+    return None
+
+>>> perhaps(data, lambda d: d.get('a'))
