@@ -112,10 +112,14 @@ Challenge: how do you implement zero?
 
 - We made a python function `incr` so we can see the result as a human number 
     - not a function representing a structure of functions
+    - the sole purpose is for us to look at our work, not part of the lambda calculus
+    - might make more sense to name it `print` or `show` or wrap it with that name
 
 ```
 def incr(x):
   ''' give this a church numeral to see a human interpretable python number
+  ONE(incr)(0)  # yields 1
+  increment by whatever python number you give, 0 is identity
   '''
   return x + 1
 ```
@@ -131,6 +135,28 @@ THREE = lambda f: lambda x: f(f(f(x)))
 FOUR = lambda f: lambda x: f(f(f(f(x))))
 ```
 
+### CHALLENGE: Implement successor function, SUCC(x)
+
+```
+# SUCC(THREE) is FOUR
+# SUCC(SUCC(THREE)) is FIVE
+SUCC = lambda n:(lambda f: lambda x: f(n(f)(x))
+```
+
+### ADD, MUL
+
+```
+ADD = lambda x: lambda y: y(SUCC)(x)
+# mul is left as exercise to the reader to fully grok
+# speaker: i find this very hard to wrap my brain around
+# it's like reading your four times f three times
+MUL = lambda x: lambda y: lambda f: y(x(f))
+
+>>> MUL(THREE)(FOUR)(incr)(0)
+12
+>>> ADD(THREE)(FOUR)(incr)(0)
+7
+```
 
 
 
