@@ -173,3 +173,75 @@ ISZERO = lambda n: n(lambda f: LAZY_FALSE)(LAZY_TRUE) # rewrite for lazy
 FACT = lambda n: ISZERO(n)(lambda: ONE)(lambda: MUL(n)(FACT(PRED(n))))
 
 FACT(THREE)(incr)(0)  # return 6 - it worked!
+
+
+# how does recursion work??? no variabkles
+
+fact = lambda n: 1 if n==0 else n*fact(n-1)
+# how do i implement this with no self reference to the fact??
+# well there's this dumb way of sending it in as an argument - still does not work in python
+#fact = (lambda f: lambda n: 1 if n==0 else n*f(n-1))(fact) # just a conceptual idea, pass fact into itself
+# spoiler alert: we will use the y combinator eventually
+# fact = (lambda f: lambda n: 1 if n==0 else n*f(n-1))(...)
+# do the opposite of don't repeat yourself.... REPEAT YOURSELF
+# still not converted to python of course
+# another problem, we are not following the API, the argument is missing, fact is a 2 argument function
+# fact = (lambda f: lambda n: 1 if n==0 else n*f(n-1))(lambda f: lambda n: 1 if n==0 else n*f(n-1))
+# so "where do i get the second argument"... you just pass f in
+
+# python representation of this, passing another copy of function into itself
+fact = (lambda f:lambda n:1 if n==0 else n*f(f)(n-1))(lambda f:lambda n:1 if n==0 else n*f(f)(n-1))
+
+# this isn't in lambda calculus so use python numbers
+fact(3)
+fact(4)
+
+# if you want to be hardcore put it into an f string lol
+
+# INTERESTING THING - We found a fixed point - sqrt(1)=1, function returns the input forever
+
+#lets take out the middle part and put it into its own variable
+
+'''
+the things that follow do not work as python code
+'''
+# fact = (lambda f: lambda n: 1 if n==0 else n*f(n-1))(fact)
+# R = (lambda f: lambda n: 1 if n == 0 else n*f(n-1))
+# fact = R(fact)  # therefore fact must be a fixed point of the R function
+
+
+# SUPPOSE there is SOME FUNCTION Y(R) that computes the fixed point of E
+# Y(R) -> Fixed point of R (whatever it is)
+# if it existed, then: Y(R) = R(Y(R))  since it's a fixed point... replacing fact with Y
+# but why is it helpful... let's do the little recursion trick:
+# Y(R) = (lambda x: R(x))(Y(R)) # can't do it! must repeat yourself...
+
+# Y(R) = (lambda x: R(x))(lambda x: R(x))
+# we had to do the hack with the f where we provided f(f), so we have to do that here:
+# Y(R) = (lambda x: R(x(x)))(lambda x: R(x(x)))
+# starting to look like a formula, lets pull out the R
+# Y(R) = lambda f: lambda x: f(x(x)))(lambda x: f(x(x))))(R) # R is on both sides so drop it
+
+# this is the y combinator derived originally by Haskell Curry
+# Y = lambda f: lambda x: f(x(x)))(lambda x: f(x(x)))
+
+# fact = Y(R) - if the y combinator works, it will create a recursive function by magic
+# but of course python infinite RecursionError!! python eager argument evaluation again
+# the solution to this problem is the solution to all python problems - PUT A DECORATOR ON IT!
+
+
+def f(x):
+    return 2*x + 1
+
+# decorate
+def g(x):
+    return f(x)
+
+R = (lambda f: lambda n: 1 if n == 0 else n*f(n-1))
+Y = lambda f: (lambda x: f(lambda z: x(x)(z)))(lambda x: f(lambda z: x(x)(z)))
+fact = Y(R)
+
+R1 = lambda f: lambda n: 1 if n <= 2 else f(n-1)+f(n-2)
+fib = Y(R1)
+fib(3)
+fib(10)

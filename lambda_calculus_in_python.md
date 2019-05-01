@@ -3,6 +3,7 @@
 - Three Hour Seminar
 - Pycon 2019: Wed, May 1st
 
+Note that we just alias things with names because we want to move them around. Lambda calculus has no assignment. That's listed below.
 
 ## What is the lambda calculus (general question)
 
@@ -254,7 +255,7 @@ def cdr(p):
 ```
 
 
-## Ok so lets do PRED, SUB, ISZERO, 
+## Ok so lets do PRED, SUB, ISZERO, FACTORIAL
 
 Lots of incremental tools building up.
 
@@ -264,7 +265,14 @@ predecessor,  subtraction, zero detection
 
 See `pylambda6.py`
 
+Factorial is super complicated and requires `LAZY_FALSE`, `LAZY_TRUE` in order to get applicative/lazy evaluation.
 
 
+## Finally, the Y combinator
 
+Also see `pylambda6.py`
+
+Moses Ilyich Schonfinkel - all lambda calculuses recommend him. He invented currying in the twenties. Invented Combinatory Logic. Interesting guy, interesting story. Went insane when he was 28 and all his math papers got burned in the winter for fuel or something. Cited by Alonzo Church and other papers.
+
+You can get rid of the requirement of defining other stuff. You can define all functions from combinator primitives.
 
