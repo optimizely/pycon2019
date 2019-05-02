@@ -3,6 +3,30 @@
 - this repo: https://github.com/pauleveritt/42-workshop
 - replay this presentation: https://www.jetbrains.com/pycharm/guide/playlists/42/
 
+## 7 extra tips from Michael and Matt? - not part of the 42
+
+Used sentiment analysis tool as example.
+
+1. Use the icon to use the PyCharm python IDE profiler
+  - need to have scrollbars enabled on mac on the profiler visualization
+  - example: changing list comprehensions to set comprehensions based on profiler
+2. Refactoring: `Code->Locate Duplicates`
+  - e.g. identifying extra `__repr__` in class hierarchies
+3. AceJump Plugin: CTRL+; to activate jump mode... works like vim words?
+4. Something about installing npm packages with the pycharm terminal
+5. FiraCode font on github - already in PyCharm, enable it in preferences... 
+  - make sure to `enable font ligatures`
+  - rewrites ===, !=, <=, etc to their unicode math equivalents
+6. something about automated type annotation
+7. did not exist?
+
+There's a PyCharm mini course, about 5 hours somewhere online by Michael.
+
+
+## Special Announcement
+
+- Matt and Michael write a book called 'Mastering PyCharm"
+
 
 ## Presentation with verbal notes
 
