@@ -2,6 +2,7 @@
 
 - Speaker: Rubin
 - Advanced Talk
+- [Online Materials](https://lerner.co.il/2019/05/03/pycon-practical-decorators-code-and-slides/)
 
 Note:  The author gave examples 1, 2, and 5... what are 3 and 4? Were they contained in 2?
 
